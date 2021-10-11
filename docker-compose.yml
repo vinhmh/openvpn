@@ -1,18 +1,18 @@
----
 version: "3.1"
 networks:
   opentechiz:
     external: true
     driver: overlay
 services:
-  openvpn-as:
-    image: ghcr.io/linuxserver/openvpn-as
+  openvpn:
+    image: linuxserver/openvpn-as
+    hostname: openvpn
     cap_add:
       - NET_ADMIN
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/London
+      - TZ=Asia/Ho_Chi_Minh
       - INTERFACE=eth0 #optional
     volumes:
       - ./config:/config
