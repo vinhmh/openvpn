@@ -1,24 +1,12 @@
-version: "3.1"
-networks:
-  opentechiz:
-    external: true
-    driver: overlay
+version: '3.1'
 services:
   openvpn:
-    image: linuxserver/openvpn-as
-    hostname: openvpn
     cap_add:
-      - NET_ADMIN
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Asia/Ho_Chi_Minh
-      - INTERFACE=eth0 #optional
-    volumes:
-      - ./config:/config
+     - NET_ADMIN
+    image: kylemanna/openvpn
+    container_name: openvpn
     ports:
-      - 943:943
-      - 9443:9443
-      - 1194:1194/udp
-    networks:
-      - opentechiz
+     - "1194:1194/udp"
+    restart: always
+    volumes:
+     - ./openvpn-data/conf:/etc/openvpn
